@@ -5,7 +5,7 @@ function setup() {
   mouseState="up";
 }
 
-function toBin(n,k){//2進数表示へ
+function toBin(n,k){//k桁0埋め2進数表示へ
   s=""
   for(var i=0;i<k;i++){
     s=(1<<i&n?"1":"0")+s;  
@@ -67,7 +67,7 @@ function drawTable(Arr,sx,sy,wid,hei){
       rect(sx+dx*w,sy+dy*h,dx,dy);
       fill(0);
       noStroke(0);
-      textSize(20);
+      textSize(min(dy,dx/str(Arr[h][w]).length));
       textAlign(CENTER,CENTER);
       text(str(Arr[h][w]), sx+dx*w+dx/2,sy+dy*h+dy/2);
     }
@@ -112,10 +112,15 @@ function draw() {
   clear();
   background(255);
   updateMouseState();
+  
   var sx=30,sy=30,wid=200,hei=500;
   drawTable(table,sx,sy,wid,hei);
   flipFlop(table,sx,sy,wid,hei);
   drawTable(Karnaugh,sx+300,sy,300,300);
+  textSize(20);
+  textAlign(LEFT,BOTTOM);
+  text("クリックで変更",sx,sy);
+  text(table[0][2]+" "+table[0][3]+"↓"+table[0][0]+" "+table[0][1]+"→",sx+300,sy);
   
   for(var i=0;i<bitState.length;i++){
     table[i+1][vars]=str(bitState[i]);
