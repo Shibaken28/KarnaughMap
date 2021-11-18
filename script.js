@@ -108,11 +108,43 @@ function updateMouseState(){
   }
 }
 
+function getVarName(){
+    for(var i=0;i<vars;i++){
+        table[0][i]=document.getElementById("var"+str(i)).value;
+    }
+}
+
+function setOutput(){
+    output="\\begin{table}[H]\n"+
+    "\\caption{caption}\n"+
+    "\\label{label}\n"+
+    "\\centering\n"+
+    "\\begin{tabular}{|c|c|c|c|c|}\n"+
+    "    \\hline\n"+
+    "    \\diagbox{$"+table[0][2]+","+table[0][3]+"$}{$"+table[0][0]+","+table[0][1]+"$}&$00$&$01$&$11$&$10$\\\\ \\hline\n";
+    for(var i=1;i<=vars;i++){
+        for(var j=0;j<=vars;j++){
+            if(j==0){
+                output+="    $"+toBin(idY[i-1],2)+"$";
+            }else{
+                output+=" & $"+str(Karnaugh[i][j])+"$";
+            }
+        }
+        output+=" \\\\ \\hline \n"
+    }
+    output+="\\end{tabular}\n"+
+    "\\end{table}\n";
+
+    document.getElementById("output").value=output;
+}
+
 function draw() {
   clear();
   background(255);
   updateMouseState();
-  
+  getVarName();
+  setOutput();
+
   var sx=30,sy=30,wid=200,hei=500;
   drawTable(table,sx,sy,wid,hei);
   flipFlop(table,sx,sy,wid,hei);

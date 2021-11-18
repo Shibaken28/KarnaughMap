@@ -11,10 +11,13 @@
     overflow: auto;
   }
 
-  div{
-    user-select: none
+  div{  
   }
-   
+
+  .noselect{
+    user-select: none;
+  }
+
   .footer {
     position: fixed;
     bottom: 0;

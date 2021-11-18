@@ -7,6 +7,23 @@
   </head>
   <body>
     <script src="./script.js"></script>
-    <div>不具合などは<a href="https://github.com/Shibaken28/KarnaughMap" target="_blank" rel="noopener noreferrer">こちら</a> by shibaken28 </div>
+    <div class="noselect">不具合などは<a href="https://github.com/Shibaken28/KarnaughMap" target="_blank" rel="noopener noreferrer">こちら</a>へ by shibaken28
+        <br><br>
+    <textarea id="output" name=”テキストエリア” rows=”3″ onfocus="this.select();" readonly cols=”50″ wrap=”hard”>ここにTeX形式で出力されます．\usepackage{diagbox}を使用しています．
+    </textarea>
+    <br>
+    <label for="name">var1 Name:</label>
+    <input type="text" id="var0" name="name" required
+        minlength="1" maxlength="5" value="EN" size="10">
+    <label for="name">var2 Name:</label>
+    <input type="text" id="var1" name="name" required
+        minlength="1" maxlength="5" value="N2" size="10">
+    <label for="name">var3 Name:</label>
+    <input type="text" id="var2" name="name" required
+        minlength="1" maxlength="5" value="N1" size="10">
+    <label for="name">var4 Name:</label>
+    <input type="text" id="var3" name="name" required
+        minlength="1" maxlength="5" value="N0" size="10">
+    </div>
   </body>
 </html>
