@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(800, 550);
   vars=4;//変数の数
   makeTables();
   mouseState="up";
