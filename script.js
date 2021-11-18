@@ -67,7 +67,7 @@ function drawTable(Arr,sx,sy,wid,hei){
       rect(sx+dx*w,sy+dy*h,dx,dy);
       fill(0);
       noStroke(0);
-      textSize(min(dy,dx/str(Arr[h][w]).length));
+      textSize(min(dy-3,dx/str(Arr[h][w]).length-3));
       textAlign(CENTER,CENTER);
       text(str(Arr[h][w]), sx+dx*w+dx/2,sy+dy*h+dy/2);
     }
@@ -131,7 +131,3 @@ function draw() {
     }
   }
 }
-
-
-
-
