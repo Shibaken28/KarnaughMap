@@ -3,7 +3,7 @@
 ## 概要
 真理値表からカルノー図を作るだけのシステムです
 現在4変数のみしか対応していません
-サイトは(こちら)[https://shibaken28.github.io/KarnaughMap/]
+サイトは!(こちら)[https://shibaken28.github.io/KarnaughMap/]
 
 ## 使い方
 真理値表のマスをクリックすると真偽が反転します
