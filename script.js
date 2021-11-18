@@ -5,6 +5,13 @@ function setup() {
   mouseState="up";
 }
 
+function toBin(n,k){//2進数表示へ
+  s=""
+  for(var i=0;i<k;i++){
+    s=(1<<i&n?"1":"0")+s;  
+  }
+  return s;
+}
 
 function makeTables(){
   bitState = new Array(1<<vars);//そのときの状態(0or1)
@@ -17,18 +24,34 @@ function makeTables(){
     table[i] = new Array(vars+1);
     for(var j=0;j<vars+1;j++){
       if(i==0){
-        table[i][j]="N"+str(j);
-        if(j==vars)table[i][j]="A";
+        if(j==0)table[i][j]="EN";
+        if(j==1)table[i][j]="N2";
+        if(j==2)table[i][j]="N1";
+        if(j==3)table[i][j]="N0";
+        if(j==4)table[i][j]="A";
       }else{
         if(j<vars)table[i][j]=((i-1)&(1<<(vars-1-j)))?"1":"0";
       }
     }
   }
-  //vars=4のときのみ使える
+  
+  //これ以下vars=4のときのみ使えるコード
   idX=[0b00,0b01,0b11,0b10];
   idY=[0b00,0b01,0b11,0b10];
-  //使い方 T[x][y]=bitState[idX[x]|idY[y]<<2]
+  Karnaugh = new Array(5);
+  for(var i=0;i<Karnaugh.length;i++){
+    Karnaugh[i] = new Array(5);
+  }
+  for(var i=1;i<Karnaugh.length;i++){
+     Karnaugh[i][0]=toBin(idY[i-1],2);
+  }
+  for(var j=1;j<Karnaugh[0].length;j++){
+    Karnaugh[0][j]=toBin(idX[j-1],2);
+  }
+  Karnaugh[0][0]="";
 }
+
+
 
 function drawTable(Arr,sx,sy,wid,hei){
   var cx=Arr[0].length;
@@ -40,6 +63,7 @@ function drawTable(Arr,sx,sy,wid,hei){
       noFill();
       strokeWeight(1);
       stroke(0);
+      if(Arr[h][w]=="1")fill(10,200,200);
       rect(sx+dx*w,sy+dy*h,dx,dy);
       fill(0);
       noStroke(0);
@@ -88,11 +112,21 @@ function draw() {
   clear();
   background(255);
   updateMouseState();
-  var sx=10,sy=10,wid=200,hei=500;
+  var sx=30,sy=30,wid=200,hei=500;
   drawTable(table,sx,sy,wid,hei);
   flipFlop(table,sx,sy,wid,hei);
+  drawTable(Karnaugh,sx+300,sy,300,300);
+  
   for(var i=0;i<bitState.length;i++){
     table[i+1][vars]=str(bitState[i]);
   }
+  for(var h=0;h<4;h++){
+    for(var w=0;w<4;w++){
+      Karnaugh[h+1][w+1]=bitState[idX[w]<<2|idY[h]]
+    }
+  }
 }
+
+
+
 
