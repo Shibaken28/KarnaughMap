@@ -151,8 +151,8 @@ function draw() {
   drawTable(Karnaugh,sx+300,sy,300,300);
   textSize(20);
   textAlign(LEFT,BOTTOM);
-  text("クリックで変更",sx,sy);
-  text(table[0][2]+" "+table[0][3]+"↓"+table[0][0]+" "+table[0][1]+"→",sx+300,sy);
+  text("クリックで変更",sx,sy-5);
+  text(table[0][2]+" "+table[0][3]+"↓"+table[0][0]+" "+table[0][1]+"→",sx+300,sy-5);
   
   for(var i=0;i<bitState.length;i++){
     table[i+1][vars]=str(bitState[i]);
