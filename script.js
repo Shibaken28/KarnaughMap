@@ -236,7 +236,7 @@ function drawSimple(){
   textSize(15);
   textAlign(LEFT,TOP);
   var sx=300,sy=400;
-  text("簡略化の候補",sx,sy);
+  text("簡略化の候補(β)",sx,sy);
   for(var i=0;i<result.length;i++){
     output=table[0][vars]+" = ";
     for(var j=0;j<result[i].length;j++){
