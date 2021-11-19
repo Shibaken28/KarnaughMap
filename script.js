@@ -1,3 +1,9 @@
+const EN = "EN";
+const IN_0 = "IN_0";
+const IN_1 = "IN_1";
+const IN_2 = "IN_2";
+const A = "A";
+
 function setup() {
   createCanvas(1200, 900);
   vars=4;//変数の数
@@ -29,11 +35,11 @@ function setTable(){
     table[i] = new Array(vars+1);
     for(var j=0;j<vars+1;j++){
       if(i==0){
-        if(j==0)table[i][j]="EN";
-        if(j==1)table[i][j]="IN_2";
-        if(j==2)table[i][j]="IN_1";
-        if(j==3)table[i][j]="IN_0";
-        if(j==4)table[i][j]="A";
+        if(j==0)table[i][j] = EN;
+        if(j==1)table[i][j] = IN_2;
+        if(j==2)table[i][j] = IN_1;
+        if(j==3)table[i][j] = IN_0;
+        if(j==4)table[i][j] = A;
       }else{
         if(j<vars)table[i][j]=((i-1)&(1<<(vars-1-j)))?"1":"0";
       }
@@ -125,11 +131,11 @@ function getVarName(){
     for(var i=0;i<vars;i++){
         table[0][i]=document.getElementById("var"+str(i)).value;
         if(table[0][i] == ""){
-            if(i==0)table[0][i]="EN";
-            if(i==1)table[0][i]="IN_2";
-            if(i==2)table[0][i]="IN_1";
-            if(i==3)table[0][i]="IN_0";
-            if(i==4)table[0][i]="A";
+            if(i==0)table[0][i] = EN;
+            if(i==1)table[0][i] = IN_2;
+            if(i==2)table[0][i] = IN_1;
+            if(i==3)table[0][i] = IN_0;
+            if(i==4)table[0][i] = A;
         }
     }
 }
