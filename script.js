@@ -124,6 +124,13 @@ function updateMouseState(){
 function getVarName(){
     for(var i=0;i<vars;i++){
         table[0][i]=document.getElementById("var"+str(i)).value;
+        if(table[0][i] == ""){
+            if(i==0)table[0][i]="EN";
+            if(i==1)table[0][i]="IN_2";
+            if(i==2)table[0][i]="IN_1";
+            if(i==3)table[0][i]="IN_0";
+            if(i==4)table[0][i]="A";
+        }
     }
 }
 
