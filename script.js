@@ -30,9 +30,9 @@ function setTable(){
     for(var j=0;j<vars+1;j++){
       if(i==0){
         if(j==0)table[i][j]="EN";
-        if(j==1)table[i][j]="N2";
-        if(j==2)table[i][j]="N1";
-        if(j==3)table[i][j]="N0";
+        if(j==1)table[i][j]="IN_2";
+        if(j==2)table[i][j]="IN_1";
+        if(j==3)table[i][j]="IN_0";
         if(j==4)table[i][j]="A";
       }else{
         if(j<vars)table[i][j]=((i-1)&(1<<(vars-1-j)))?"1":"0";
