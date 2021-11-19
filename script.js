@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(900, 900);
+  createCanvas(1200, 900);
   vars=4;//変数の数
   time=0
   makeTables();
