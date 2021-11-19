@@ -22,12 +22,7 @@ function countBits(n,k){
   return cnt;
 }
 
-function makeTables(){
-  result = new Array(0);
-  bitState = new Array(1<<vars);//そのときの状態(0or1)
-  for(var i=0;i<bitState.length;i++){
-    bitState[i]=0;
-  }
+function setTable(){
   table = new Array((1<<vars)+1);
   //allowToWrite = new Array((1<<vars)+1);
   for(var i=0;i<table.length;i++){
@@ -44,7 +39,15 @@ function makeTables(){
       }
     }
   }
-  
+}
+
+function makeTables(){
+  result = new Array(0);
+  bitState = new Array(1<<vars);//そのときの状態(0or1)
+  for(var i=0;i<bitState.length;i++){
+    bitState[i]=0;
+  }
+  setTable();
   //これ以下vars=4のときのみ使えるコード
   idX=[0b00,0b01,0b11,0b10];
   idY=[0b00,0b01,0b11,0b10];
