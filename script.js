@@ -229,6 +229,7 @@ function simplification(){
       }
     }
   }
+
 }
 
 function drawSimple(){
@@ -237,6 +238,7 @@ function drawSimple(){
   textAlign(LEFT,TOP);
   var sx=300,sy=400;
   text("簡略化の候補(β)",sx,sy);
+  var equOut="";
   for(var i=0;i<result.length;i++){
     output=table[0][vars]+" = ";
     for(var j=0;j<result[i].length;j++){
@@ -244,15 +246,29 @@ function drawSimple(){
         var c=result[i][j].charAt(k);
         if(c=="1"){
           output+=table[0][k]+" ";
+          if(i==0){
+            equOut+=table[0][k]+" ";
+          }
         }else if(c=="0"){
           output+="!"+table[0][k]+" ";
+          if(i==0){
+            equOut+="\\overline{"+table[0][k]+"} \\ ";
+          }
         }
       }
-      if(j<result[i].length-1)output+="+";
+      if(j<result[i].length-1){
+        output+="+";
+        if(i==0){
+          equOut+="+";
+        }
+      }
     }
     sy+=20;
     text(output,sx,sy);
   }
+
+
+  document.getElementById("equ:output").value=str("\\begin{eqnarray}\n A = "+equOut+" \\label{label} \n\\end{eqnarray}\n");
 }
 
 function draw() {
