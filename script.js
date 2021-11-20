@@ -1,3 +1,9 @@
+const EN = "EN";
+const IN_0 = "IN_0";
+const IN_1 = "IN_1";
+const IN_2 = "IN_2";
+const A = "A";
+
 function setup() {
   createCanvas(1200, 900);
   vars=4;//変数の数
@@ -22,29 +28,32 @@ function countBits(n,k){
   return cnt;
 }
 
-function makeTables(){
-  result = new Array(0);
-  bitState = new Array(1<<vars);//そのときの状態(0or1)
-  for(var i=0;i<bitState.length;i++){
-    bitState[i]=0;
-  }
+function setTable(){
   table = new Array((1<<vars)+1);
   //allowToWrite = new Array((1<<vars)+1);
   for(var i=0;i<table.length;i++){
     table[i] = new Array(vars+1);
     for(var j=0;j<vars+1;j++){
       if(i==0){
-        if(j==0)table[i][j]="EN";
-        if(j==1)table[i][j]="N2";
-        if(j==2)table[i][j]="N1";
-        if(j==3)table[i][j]="N0";
-        if(j==4)table[i][j]="A";
+        if(j==0)table[i][j] = EN;
+        if(j==1)table[i][j] = IN_2;
+        if(j==2)table[i][j] = IN_1;
+        if(j==3)table[i][j] = IN_0;
+        if(j==4)table[i][j] = A;
       }else{
         if(j<vars)table[i][j]=((i-1)&(1<<(vars-1-j)))?"1":"0";
       }
     }
   }
-  
+}
+
+function makeTables(){
+  result = new Array(0);
+  bitState = new Array(1<<vars);//そのときの状態(0or1)
+  for(var i=0;i<bitState.length;i++){
+    bitState[i]=0;
+  }
+  setTable();
   //これ以下vars=4のときのみ使えるコード
   idX=[0b00,0b01,0b11,0b10];
   idY=[0b00,0b01,0b11,0b10];
@@ -121,6 +130,13 @@ function updateMouseState(){
 function getVarName(){
     for(var i=0;i<vars;i++){
         table[0][i]=document.getElementById("var"+str(i)).value;
+        if(table[0][i] == ""){
+            if(i==0)table[0][i] = EN;
+            if(i==1)table[0][i] = IN_2;
+            if(i==2)table[0][i] = IN_1;
+            if(i==3)table[0][i] = IN_0;
+            if(i==4)table[0][i] = A;
+        }
     }
 }
 
